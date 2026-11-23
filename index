@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Nicole B. Raz, 3rd year BS Information Technology student at City College of Calamba." />
+  <title>Cyrille Nicole B. Raz – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --pink:       #f472b6;
+      --pink-light: #fbcfe8;
+      --pink-dark:  #db2777;
+      --pink-glow:  rgba(244,114,182,0.15);
+      --bg:         #0d0d14;
+      --bg2:        #13131f;
+      --bg3:        #1a1a2e;
+      --surface:    #1e1e30;
+      --surface2:   #252538;
+      --border:     rgba(244,114,182,0.15);
+      --text:       #f1f0f8;
+      --text-muted: #a9a7b5;
+      --radius:     16px;
+    }
+    [data-theme="light"] {
+      --pink-glow:  rgba(219,39,119,0.10);
+      --bg:         #fdf2f8;
+      --bg2:        #fce7f3;
+      --bg3:        #fbcfe8;
+      --surface:    #ffffff;
+      --surface2:   #f7f7f9;
+      --border:     rgba(219,39,119,0.18);
+      --text:       #1a1a2e;
+      --text-muted: #5f5f73;
+      --pink:       #be185d;
+    }
+    [data-theme="light"] .hero-orb.orb1 { background: rgba(219,39,119,.10); }
+    [data-theme="light"] .hero-orb.orb2 { background: rgba(244,114,182,.07); }
+    [data-theme="light"] .navbar        { background: rgba(253,242,248,0.88); }
+    [data-theme="light"] .mobile-menu   { background: rgba(253,242,248,0.98); }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; font-size: 16px; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+    ul { list-style: none; }
+    :focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--pink-dark); border-radius: 99px; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 14px; border-radius: 99px;
+      background: var(--pink-glow); border: 1px solid var(--border);
+      color: var(--pink); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 16px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 24px; height: 62px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      background: rgba(13,13,20,0.85);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--pink); margin-right: auto; }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
+    .nav-links a { padding: 8px 12px; border-radius: 8px; font-size: 0.88rem; font-weight: 500; color: var(--text-muted); transition: background .2s, color .2s; }
+    .nav-links a:hover, .nav-links a.active { background: var(--pink-glow); color: var(--pink); }
+    .hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; width: 44px; height: 44px; align-items: center; justify-content: center; }
+    .theme-toggle {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--pink-glow); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pink); cursor: pointer; transition: background .2s; flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--pink-dark); color: #fff; }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 62px; left: 0; right: 0;
+      background: rgba(13,13,20,0.98); border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px; flex-direction: column; gap: 4px;
+      z-index: 99; backdrop-filter: blur(16px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { padding: 12px 14px; border-radius: 10px; font-size: 1rem; font-weight: 500; color: var(--text-muted); transition: background .2s, color .2s; }
+    .mobile-menu a:hover { background: var(--pink-glow); color: var(--pink); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 12px 24px; min-height: 44px; border-radius: 12px;
+      font-size: 0.95rem; font-weight: 600; border: none; cursor: pointer;
+      font-family: inherit; transition: transform .15s, box-shadow .2s;
+    }
+    .btn:hover  { transform: translateY(-2px); }
+    .btn-pink { background: linear-gradient(135deg, var(--pink-dark), #ec4899); color: #fff; box-shadow: 0 4px 20px rgba(219,39,119,.3); }
+    .btn-outline { background: var(--pink-glow); border: 1px solid var(--border); color: var(--pink); }
+    .btn-outline:hover { border-color: var(--pink); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 100px 24px 80px; }
+    .hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+    .orb1 { width: 480px; height: 480px; background: rgba(219,39,119,.13); top: -100px; right: -80px; }
+    .orb2 { width: 320px; height: 320px; background: rgba(244,114,182,.07); bottom: -60px; left: -60px; }
+    .hero-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; max-width: 1000px; margin: 0 auto; width: 100%; }
+    .hero-content { flex: 1; max-width: 620px; min-width: 0; }
+    .hero-greeting { font-size: .9rem; color: var(--pink); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .hero-greeting::before { content: ''; width: 28px; height: 1.5px; background: var(--pink); }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4.4vw, 2.9rem); white-space: nowrap; font-weight: 800; line-height: 1.1; margin-bottom: 14px; color: var(--text); }
+    .hero-name span { color: var(--pink); }
+    .hero-role { font-size: 1rem; color: var(--text-muted); margin-bottom: 14px; }
+    .hero-role strong { color: var(--pink); font-weight: 600; }
+    .hero-location { font-size: .9rem; color: var(--text-muted); margin-bottom: 18px; display: flex; align-items: center; gap: 6px; }
+    .hero-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.75; max-width: 440px; margin-bottom: 34px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-social { display: flex; gap: 10px; margin-top: 26px; }
+    .social-btn { width: 44px; height: 44px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: all .2s; }
+    .social-btn:hover { background: var(--pink-glow); color: var(--pink); border-color: var(--pink); }
+    .hero-visual { flex-shrink: 0; }
+    .avatar-ring { width: 250px; height: 250px; border-radius: 50%; border: 3px solid var(--pink); overflow: hidden; box-shadow: 0 0 0 8px rgba(244,114,182,.1), 0 0 0 16px rgba(244,114,182,.05), 0 24px 60px rgba(0,0,0,.35); }
+    .avatar-ring img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+    /* SECTIONS */
+    .section { padding: 88px 0; position: relative; }
+    .section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--pink), transparent); }
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.3rem); font-weight: 800; color: var(--text); margin-bottom: 10px; }
+    .section-title span { color: var(--pink); }
+    .section-sub { font-size: 1rem; color: var(--text-muted); max-width: 460px; margin: 0 auto; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 36px; align-items: start; }
+    .about-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 12px; }
+    .about-photo { width: 100%; min-height: 320px; object-fit: cover; object-position: top; border-radius: 10px; display: block; }
+    .about-text h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text); margin-bottom: 4px; }
+    .about-role { color: var(--pink); font-size: .95rem; font-weight: 600; margin-bottom: 18px; }
+    .about-text p { font-size: 1rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .detail-item { background: var(--bg3); border-radius: 10px; padding: 12px 14px; border: 1px solid var(--border); }
+    .detail-label { font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .8px; font-weight: 600; margin-bottom: 3px; }
+    .detail-value { font-size: .92rem; color: var(--text); font-weight: 500; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--pink), transparent); border-radius: 99px; }
+    .tl-item { position: relative; margin-bottom: 32px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot { position: absolute; left: -24px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--pink); border: 2px solid var(--bg); box-shadow: 0 0 0 3px rgba(244,114,182,.2); }
+    .tl-year { font-size: .8rem; font-weight: 700; color: var(--pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .tl-school { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .tl-degree { font-size: .92rem; color: var(--text-muted); }
+    .tl-badge { display: inline-block; padding: 2px 10px; border-radius: 99px; background: var(--pink-glow); border: 1px solid var(--border); color: var(--pink); font-size: .75rem; font-weight: 600; margin-bottom: 6px; }
+
+    /* EXPERIENCE */
+    .exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; }
+    .exp-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--pink-dark), var(--pink)); }
+    .exp-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--pink-glow); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--pink); margin-bottom: 14px; }
+    .exp-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .exp-org   { font-size: .9rem; color: var(--pink); font-weight: 600; margin-bottom: 4px; }
+    .exp-year  { font-size: .82rem; color: var(--text-muted); margin-bottom: 10px; }
+    .exp-desc  { font-size: .92rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* SKILLS (grouped) */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .skill-group h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .skill-group h3 svg { color: var(--pink); }
+    .skill-group p { font-size: .85rem; color: var(--text-muted); margin-bottom: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 6px 14px; border-radius: 99px; background: var(--pink-glow); border: 1px solid var(--border); color: var(--text); font-size: .88rem; font-weight: 500; }
+
+    /* CERTIFICATIONS */
+    .cert-grid { max-width: 640px; margin: 0 auto; }
+    .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .cert-badge { width: 52px; height: 52px; border-radius: 12px; background: var(--pink-glow); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .cert-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .cert-issuer { font-size: .88rem; color: var(--pink); font-weight: 600; margin-bottom: 4px; }
+    .cert-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .projects-grid .project-card:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 480px; justify-self: center; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+    .project-thumb { height: 190px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); background: var(--bg3); border: 0; padding: 0; width: 100%; cursor: pointer; display: block; }
+    .project-thumb .card-slideshow { position: absolute; inset: 0; }
+    .project-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: opacity .6s ease; }
+    .project-thumb img.fading { opacity: 0; }
+    .project-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .project-tag { padding: 3px 10px; border-radius: 99px; background: var(--pink-glow); border: 1px solid var(--border); color: var(--pink); font-size: .75rem; font-weight: 600; }
+    .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .project-desc { font-size: .92rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+    .project-facts { display: grid; gap: 8px; margin-bottom: 16px; }
+    .project-facts div { font-size: .88rem; color: var(--text-muted); line-height: 1.55; }
+    .project-facts dt { display: inline; font-weight: 700; color: var(--text); }
+    .project-facts dd { display: inline; }
+    .project-actions { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+    .project-actions .btn { padding: 10px 16px; font-size: .88rem; }
+
+    /* CONTACT */
+    .contact-wrap { max-width: 580px; margin: 0 auto; }
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 38px 32px; }
+    .contact-card p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .contact-link { display: flex; align-items: center; gap: 14px; padding: 14px 16px; min-height: 56px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; transition: border-color .2s, background .2s; }
+    .contact-link:hover { border-color: var(--pink); background: var(--pink-glow); }
+    .c-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--pink-glow); display: flex; align-items: center; justify-content: center; color: var(--pink); flex-shrink: 0; }
+    .c-label { font-size: .75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
+    .c-value { font-size: .95rem; color: var(--text); font-weight: 500; margin-top: 1px; word-break: break-all; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: .85rem; color: var(--text-muted); }
+    footer span { color: var(--pink); }
+
+    /* MODAL */
+    #proj-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 500; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
+    .modal-box { background: #1a1a2e; border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 680px; max-height: 95vh; overflow-y: auto; position: relative; }
+    .modal-close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.12); border: none; color: #fff; font-size: 1.1rem; cursor: pointer; z-index: 10; }
+    .modal-img-wrap { position: relative; border-radius: 12px; overflow: hidden; background: #0d0d14; min-height: 260px; display: flex; align-items: center; justify-content: center; }
+    .modal-img-wrap img { width: 100%; max-height: 400px; object-fit: contain; display: block; border-radius: 12px; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.15); color: #fff; font-size: 1.2rem; cursor: pointer; z-index: 5; }
+
+    .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      .project-thumb img { transition: none; }
+    }
+
+    @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { flex-direction: column-reverse; text-align: center; gap: 36px; }
+      .hero-content { max-width: 100%; width: 100%; }
+      .hero-name { font-size: clamp(1.3rem, 6.2vw, 2.6rem); }
+      .hero-greeting, .hero-location, .hero-btns, .hero-social { justify-content: center; }
+      .hero-desc { margin: 0 auto 28px; }
+      .avatar-ring { width: 190px; height: 190px; }
+      .about-grid, .projects-grid, .detail-grid, .exp-grid { grid-template-columns: 1fr; }
+      .projects-grid .project-card:last-child:nth-child(odd) { max-width: none; }
+      .contact-card { padding: 26px 18px; }
+      .cert-card { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 60px 0; }
+      .hero { padding: 90px 16px 60px; }
+      .container { padding: 0 16px; }
+      .btn { width: 100%; justify-content: center; }
+      .hero-btns { flex-direction: column; }
+      .project-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" aria-label="Main">
+    <div class="nav-logo">Nicole B. Raz</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">
+      <i data-lucide="moon" width="16" height="16"></i>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <i data-lucide="menu" width="22" height="22"></i>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about"          onclick="closeMobile()">About</a>
+    <a href="#education"      onclick="closeMobile()">Education</a>
+    <a href="#experience"     onclick="closeMobile()">Experience</a>
+    <a href="#skills"         onclick="closeMobile()">Skills</a>
+    <a href="#certifications" onclick="closeMobile()">Certifications</a>
+    <a href="#projects"       onclick="closeMobile()">Projects</a>
+    <a href="#contact"        onclick="closeMobile()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-greeting">Hello, I'm</div>
+        <h1 class="hero-name">Cyrille Nicole <span>B. Raz</span></h1>
+        <p class="hero-role"><strong>BSIT Student</strong> &nbsp;·&nbsp; UI Developer</p>
+        <p class="hero-location">
+          <i data-lucide="map-pin" width="14" height="14" style="color:var(--pink);"></i>
+          Calamba City, Philippines
+        </p>
+        <p class="hero-desc">A 3rd year Information Technology student who builds responsive, easy-to-use interfaces.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-pink"><i data-lucide="folder-open" width="15" height="15"></i> View my projects</a>
+          <a href="#contact"  class="btn btn-outline"><i data-lucide="send" width="15" height="15"></i> Contact me</a>
+          <a href="Raz_Nicole_CV.pdf" download class="btn btn-outline"><i data-lucide="file-down" width="15" height="15"></i> Download CV</a>
+        </div>
+        <div class="hero-social">
+          <a href="mailto:nicoleraz2806@gmail.com" class="social-btn" aria-label="Email Nicole"><i data-lucide="mail" width="18" height="18"></i></a>
+          <a href="https://www.linkedin.com/in/nicole-raz-b56537415/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg></a>
+          <a href="https://www.facebook.com/NicoleRazzz" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avatar-ring">
+          <img src="Nicole.jpg" alt="Portrait of Cyrille Nicole B. Raz" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="user" width="11" height="11"></i> About</div>
+        <h2 class="section-title">About <span>Me</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card fade-up">
+          <img src="Nicole.jpg" alt="Portrait of Cyrille Nicole B. Raz" class="about-photo" />
+        </div>
+        <div class="about-text fade-up">
+          <h3>Cyrille Nicole B. Raz</h3>
+          <div class="about-role">3rd Year BS Information Technology · City College of Calamba</div>
+          <p>Hi! I'm Nicole, an Information Technology student from Calamba City. I like turning ideas into clean, user-friendly interfaces, first in Figma and then in code.</p>
+          <p>I'm building my skills in web development and UI design through school projects, and I'm looking for opportunities to learn on the job, such as an internship.</p>
+          <div class="detail-grid">
+            <div class="detail-item"><div class="detail-label">Course</div><div class="detail-value">BS Information Technology</div></div>
+            <div class="detail-item"><div class="detail-label">Year level</div><div class="detail-value">3rd Year</div></div>
+            <div class="detail-item"><div class="detail-label">School</div><div class="detail-value">City College of Calamba</div></div>
+            <div class="detail-item"><div class="detail-label">Status</div><div class="detail-value">Open to internships</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="graduation-cap" width="11" height="11"></i> Education</div>
+        <h2 class="section-title">Academic <span>Background</span></h2>
+      </div>
+      <div style="max-width:640px;margin:0 auto;">
+        <div class="timeline fade-up">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2024 – Present</div>
+            <span class="tl-badge">College</span>
+            <div class="tl-school">City College of Calamba</div>
+            <div class="tl-degree">BS Information Technology</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2022 – 2024</div>
+            <span class="tl-badge">Senior High School</span>
+            <div class="tl-school">Looc Integrated School</div>
+            <div class="tl-degree">STEM Strand</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2018 – 2022</div>
+            <span class="tl-badge">Secondary</span>
+            <div class="tl-school">Calamba Integrated School</div>
+            <div class="tl-degree">Junior High School</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2015 – 2018</div>
+            <span class="tl-badge">Primary</span>
+            <div class="tl-school">Ark of Angels Academy</div>
+            <div class="tl-degree">Elementary</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2012 – 2015</div>
+            <span class="tl-badge">Primary</span>
+            <div class="tl-school">Jose Rizal Memorial School</div>
+            <div class="tl-degree">Elementary</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="briefcase" width="11" height="11"></i> Experience</div>
+        <h2 class="section-title">Work <span>Experience</span></h2>
+        <p class="section-sub">Programs and work I've taken part in</p>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-card fade-up">
+          <div class="exp-icon"><i data-lucide="building-2" width="20" height="20"></i></div>
+          <div class="exp-title">Work Immersion</div>
+          <div class="exp-org">Looc Integrated School</div>
+          <div class="exp-year">Senior High School, STEM strand</div>
+          <div class="exp-desc">Completed a work immersion program that gave me hands-on exposure to a real workplace and practical technical skills.</div>
+        </div>
+        <div class="exp-card fade-up">
+          <div class="exp-icon"><i data-lucide="hand-coins" width="20" height="20"></i></div>
+          <div class="exp-title">Cash for Work Program</div>
+          <div class="exp-org">Government community program</div>
+          <div class="exp-year">Community service</div>
+          <div class="exp-desc">Took part in a local community program, building work ethic, responsibility and teamwork.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="code-2" width="11" height="11"></i> Skills</div>
+        <h2 class="section-title">Technical &amp; Design <span>Skills</span></h2>
+        <p class="section-sub">Tools I have used in my school projects</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group fade-up">
+          <h3><i data-lucide="code-2" width="18" height="18"></i> Programming</h3>
+          <p>Used in: GymHub, Egg Care Game, Number Guessing Game</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">C++</span></div>
+        </div>
+        <div class="skill-group fade-up">
+          <h3><i data-lucide="pen-tool" width="18" height="18"></i> Design</h3>
+          <p>Used in: Engelyne's Salon, GymHub</p>
+          <div class="chips"><span class="chip">Figma</span><span class="chip">Canva</span><span class="chip">UI Design</span><span class="chip">Responsive Design</span></div>
+        </div>
+        <div class="skill-group fade-up">
+          <h3><i data-lucide="network" width="18" height="18"></i> Networking</h3>
+          <p>Coursework and lab activities</p>
+          <div class="chips"><span class="chip">Cisco Packet Tracer</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="award" width="11" height="11"></i> Certifications</div>
+        <h2 class="section-title">My <span>Certifications</span></h2>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card fade-up">
+          <div class="cert-badge" aria-hidden="true">🏅</div>
+          <div>
+            <div class="cert-title">Computer Systems Servicing NC II</div>
+            <div class="cert-issuer">TESDA – Technical Education and Skills Development Authority</div>
+            <div class="cert-desc">National Certificate covering installation, configuration and maintenance of computer systems and networks.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="folder-open" width="11" height="11"></i> Projects</div>
+        <h2 class="section-title">Selected <span>Projects</span></h2>
+        <p class="section-sub">School projects with the problem, my role and what I learned. Select a card image to see screenshots.</p>
+      </div>
+      <div class="projects-grid">
+
+        <!-- GymHub -->
+        <article class="project-card fade-up">
+          <button class="project-thumb" onclick="openProject('gymhub')" aria-label="View GymHub System UI screenshots">
+            <div class="card-slideshow" data-images='["gymhub1.png","gymhub2.png","gymhub3.png"]'><img alt="GymHub System UI screenshot" /></div>
+          </button>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span><span class="project-tag">Figma</span></div>
+            <h3 class="project-title">GymHub System UI</h3>
+            <p class="project-desc">The user interface for a gym management system, designed in Figma and built with HTML, CSS and JavaScript.</p>
+            <dl class="project-facts">
+              <div><dt>Problem: </dt><dd>a gym system needs screens that staff and members can understand without training.</dd></div>
+              <div><dt>My role: </dt><dd>UI designer and front-end developer, from layout planning to code.</dd></div>
+              <div><dt>Result: </dt><dd>a complete multi-screen interface (see screenshots).</dd></div>
+              <div><dt>What I learned: </dt><dd>planning the layout in Figma first made the coding faster and more consistent.</dd></div>
+            </dl>
+            <div class="project-actions">
+              <button class="btn btn-outline" onclick="openProject('gymhub')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Egg Care Game -->
+        <article class="project-card fade-up">
+          <button class="project-thumb" onclick="openProject('egg')" aria-label="View Egg Care Game screenshots">
+            <div class="card-slideshow" data-images='["egg1.png","egg2.png"]'><img alt="Egg Care Game screenshot" /></div>
+          </button>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
+            <h3 class="project-title">Egg Care Game</h3>
+            <p class="project-desc">A browser-based virtual pet game where you look after a digital egg by managing its hunger, warmth and happiness.</p>
+            <dl class="project-facts">
+              <div><dt>Problem: </dt><dd>practice JavaScript logic by building something interactive and fun.</dd></div>
+              <div><dt>My role: </dt><dd>sole developer: designed the screens and wrote the game logic.</dd></div>
+              <div><dt>Result: </dt><dd>a playable game where the egg's stats change as you care for it.</dd></div>
+              <div><dt>What I learned: </dt><dd>keeping track of game state and updating the screen when it changes.</dd></div>
+            </dl>
+            <div class="project-actions">
+              <button class="btn btn-outline" onclick="openProject('egg')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Salon Figma -->
+        <article class="project-card fade-up">
+          <button class="project-thumb" onclick="openProject('salon')" aria-label="View Engelyne's Salon screenshots">
+            <div class="card-slideshow" data-images='["Engelyne&apos;s Salon/Landing Page.png","Engelyne&apos;s Salon/home.png","Engelyne&apos;s Salon/login.png","Engelyne&apos;s Salon/services.png","Engelyne&apos;s Salon/schedule.png","Engelyne&apos;s Salon/payment.png"]'><img alt="Engelyne's Salon screen" /></div>
+          </button>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">Figma</span><span class="project-tag">UI Design</span><span class="project-tag">Prototype</span></div>
+            <h3 class="project-title">Engelyne's Salon – Figma Design</h3>
+            <p class="project-desc">A clickable booking and management prototype for a salon, designed in Figma.</p>
+            <dl class="project-facts">
+              <div><dt>Problem: </dt><dd>booking by message makes it easy to mix up services and schedules.</dd></div>
+              <div><dt>My role: </dt><dd>UI/UX designer, from screen layouts to the clickable prototype.</dd></div>
+              <div><dt>Result: </dt><dd>an 11-screen prototype covering login, services, scheduling, payment, notifications and profile.</dd></div>
+              <div><dt>What I learned: </dt><dd>designing a clear booking flow from choosing a service to paying.</dd></div>
+            </dl>
+            <div class="project-actions">
+              <button class="btn btn-outline" onclick="openProject('salon')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
+              <a class="btn btn-pink" target="_blank" rel="noopener" href="https://www.figma.com/proto/mBNdBSxbwsM2Sgml4MD0wo/Engelyne-s-Salon?node-id=335-4419&p=f&t=Obr3kFGHd9YQCE0z-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1"><i data-lucide="external-link" width="14" height="14"></i> Open prototype</a>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- Number Guessing Game -->
+        <article class="project-card fade-up">
+          <button class="project-thumb" onclick="openProject('numgame')" aria-label="View Number Guessing Game screenshots">
+            <div class="card-slideshow" data-images='["numgame1.png"]'><img alt="Number Guessing Game screenshot" /></div>
+          </button>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
+            <h3 class="project-title">Number Guessing Game</h3>
+            <p class="project-desc">A game where you guess two numbers from 0 to 5 and bet coins. I wrote it in C++ first, then rebuilt it as a playable web page.</p>
+            <dl class="project-facts">
+              <div><dt>Problem: </dt><dd>practice programming logic (functions, loops, input checking) with a small game.</dd></div>
+              <div><dt>My role: </dt><dd>sole developer: wrote the C++ console version, then designed the web version with HTML and CSS and ported the logic to JavaScript.</dd></div>
+              <div><dt>Result: </dt><dd>a working game you can play in the browser, with the same rules as the C++ version.</dd></div>
+              <div><dt>What I learned: </dt><dd>passing variables by reference in C++, validating input, and reusing the same logic in another language.</dd></div>
+            </dl>
+            <div class="project-actions">
+              <a class="btn btn-pink" href="number-game.html"><i data-lucide="play" width="14" height="14"></i> Play web version</a>
+              <button class="btn btn-outline" onclick="openProject('numgame')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
+              <!-- Add after you upload the C++ repo:
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="YOUR-GITHUB-REPO-LINK"><i data-lucide="code" width="14" height="14"></i> View C++ code</a> -->
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT MODAL -->
+  <div id="proj-modal" role="dialog" aria-modal="true" aria-labelledby="carousel-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeProject()" aria-label="Close">✕</button>
+      <div style="padding:24px 24px 0;">
+        <div class="modal-img-wrap">
+          <img id="carousel-img" src="" alt="" />
+          <button class="modal-nav" style="left:10px;" onclick="changeSlide(-1)" aria-label="Previous image">‹</button>
+          <button class="modal-nav" style="right:10px;" onclick="changeSlide(1)" aria-label="Next image">›</button>
+        </div>
+        <div style="text-align:center;padding:18px 8px 0;">
+          <div id="carousel-title" style="font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:8px;"></div>
+          <div id="carousel-desc"  style="font-size:.9rem;color:#a9a7b5;line-height:1.65;margin-bottom:10px;"></div>
+          <div id="carousel-count" style="font-size:.82rem;font-weight:600;color:var(--pink);margin-bottom:6px;"></div>
+        </div>
+      </div>
+      <div style="padding:14px 24px 22px;display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div id="carousel-dots" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;"></div>
+        <div id="carousel-link"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="tag"><i data-lucide="send" width="11" height="11"></i> Contact</div>
+        <h2 class="section-title">Get in <span>Touch</span></h2>
+        <p class="section-sub">Open to internships and collaboration. Email is the fastest way to reach me.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-card fade-up">
+          <div class="contact-links" style="margin-top:0;">
+            <a href="mailto:nicoleraz2806@gmail.com" class="contact-link">
+              <div class="c-icon"><i data-lucide="mail" width="18" height="18"></i></div>
+              <div><div class="c-label">Email</div><div class="c-value">nicoleraz2806@gmail.com</div></div>
+            </a>
+            <a href="https://www.linkedin.com/in/nicole-raz-b56537415/" target="_blank" rel="noopener" class="contact-link">
+              <div class="c-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg></div>
+              <div><div class="c-label">LinkedIn</div><div class="c-value">Nicole Raz</div></div>
+            </a>
+            <a href="https://www.facebook.com/NicoleRazzz" target="_blank" rel="noopener" class="contact-link">
+              <div class="c-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></div>
+              <div><div class="c-label">Facebook</div><div class="c-value">Nicole Raz</div></div>
+            </a>
+            <a href="Raz_Nicole_CV.pdf" download class="contact-link">
+              <div class="c-icon"><i data-lucide="file-text" width="18" height="18"></i></div>
+              <div><div class="c-label">Curriculum Vitae</div><div class="c-value">Download CV (PDF)</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Designed &amp; built by <span>Nicole B. Raz</span> &nbsp;·&nbsp; © 2026</p>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Theme toggle
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+    let saved = 'dark';
+    try { saved = localStorage.getItem('nicole-theme') || 'dark'; } catch (e) {}
+    html.setAttribute('data-theme', saved);
+    updateThemeIcon(saved);
+    themeToggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      try { localStorage.setItem('nicole-theme', next); } catch (e) {}
+      updateThemeIcon(next);
+    });
+    function updateThemeIcon(theme) {
+      themeToggle.innerHTML = theme === 'dark'
+        ? '<i data-lucide="sun" width="16" height="16"></i>'
+        : '<i data-lucide="moon" width="16" height="16"></i>';
+      lucide.createIcons();
+    }
+
+    // Mobile menu
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    window.closeMobile = () => mobileMenu.classList.remove('open');
+
+    // Project card slideshows (thumbnails)
+    document.querySelectorAll('.card-slideshow').forEach(box => {
+      const imgs = JSON.parse(box.dataset.images);
+      const img  = box.querySelector('img');
+      let i = 0;
+      img.src = imgs[0];
+      if (imgs.length < 2) return;
+      setInterval(() => {
+        img.classList.add('fading');
+        setTimeout(() => {
+          i = (i + 1) % imgs.length;
+          img.src = imgs[i];
+          img.classList.remove('fading');
+        }, 600);
+      }, 3500);
+    });
+
+    // Project screenshot modal
+    const PROJECTS = {
+      gymhub: {
+        title: 'GymHub System UI',
+        desc:  'User interface for a gym management system.',
+        images: ['gymhub1.png','gymhub2.png','gymhub3.png'],
+        link:  null
+      },
+      egg: {
+        title: 'Egg Care Game',
+        desc:  'Browser-based virtual pet game with hunger, warmth and happiness stats.',
+        images: ['egg1.png','egg2.png'],
+        link:  null
+      },
+      numgame: {
+        title: 'Number Guessing Game',
+        desc:  'Web version of my C++ number guessing game.',
+        images: ['numgame1.png'],
+        link:  null
+      },
+      salon: {
+        title: "Engelyne's Salon – Figma Design",
+        desc:  'Salon booking and management UI prototype designed in Figma.',
+        images: [
+          "Engelyne's Salon/Landing Page.png",
+          "Engelyne's Salon/home.png",
+          "Engelyne's Salon/login.png",
+          "Engelyne's Salon/services.png",
+          "Engelyne's Salon/hair.png",
+          "Engelyne's Salon/haircut.png",
+          "Engelyne's Salon/nailcare.png",
+          "Engelyne's Salon/schedule.png",
+          "Engelyne's Salon/payment.png",
+          "Engelyne's Salon/notification.png",
+          "Engelyne's Salon/profile.png"
+        ],
+        link: 'https://www.figma.com/proto/mBNdBSxbwsM2Sgml4MD0wo/Engelyne-s-Salon?node-id=335-4419&p=f&t=Obr3kFGHd9YQCE0z-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1'
+      }
+    };
+
+    let currentProject = null;
+    let currentIndex   = 0;
+    const modal = document.getElementById('proj-modal');
+
+    window.openProject = (key) => {
+      currentProject = PROJECTS[key];
+      if (!currentProject) return;
+      currentIndex = 0;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      renderSlide();
+    };
+    window.changeSlide = (dir) => {
+      if (!currentProject) return;
+      const total = currentProject.images.length;
+      currentIndex = (currentIndex + dir + total) % total;
+      renderSlide();
+    };
+    window.jumpSlide = (i) => { currentIndex = i; renderSlide(); };
+    window.closeProject = () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      currentProject = null;
+    };
+
+    function renderSlide() {
+      const p = currentProject;
+      const total = p.images.length;
+      const src = p.images[currentIndex];
+      const img = document.getElementById('carousel-img');
+      img.src = src;
+      img.alt = p.title + ' screenshot ' + (currentIndex + 1);
+      document.getElementById('carousel-title').textContent = p.title;
+      document.getElementById('carousel-desc').textContent  = p.desc;
+      document.getElementById('carousel-count').textContent = `Image ${currentIndex + 1} of ${total}`;
+      document.getElementById('carousel-dots').innerHTML = p.images.map((_, i) =>
+        `<div onclick="jumpSlide(${i})" style="width:${i===currentIndex?'20px':'8px'};height:8px;border-radius:99px;background:${i===currentIndex?'var(--pink)':'rgba(255,255,255,.25)'};cursor:pointer;transition:all .3s;"></div>`
+      ).join('');
+      document.getElementById('carousel-link').innerHTML = p.link
+        ? `<a href="${p.link}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:.9rem;font-weight:600;color:var(--pink);min-height:44px;"><i data-lucide="external-link" width="13" height="13"></i> Open prototype in Figma</a>`
+        : '';
+      if (window.lucide) lucide.createIcons();
+    }
+
+    modal.addEventListener('click', e => { if (e.target === modal) closeProject(); });
+    document.addEventListener('keydown', e => {
+      if (!currentProject) return;
+      if (e.key === 'Escape')     closeProject();
+      if (e.key === 'ArrowLeft')  changeSlide(-1);
+      if (e.key === 'ArrowRight') changeSlide(1);
+    });
+
+    // Active nav link on scroll
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navAnchors.forEach(a => a.classList.remove('active'));
+        const match = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
