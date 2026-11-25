@@ -624,6 +624,12 @@
   <script>
     lucide.createIcons();
 
+    // Always start at the top on reload
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.addEventListener('pageshow', () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
+
     // Theme toggle
     const html = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
