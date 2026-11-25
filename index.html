@@ -197,6 +197,8 @@
     .project-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
     .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
     .project-tag { padding: 3px 10px; border-radius: 99px; background: var(--pink-glow); border: 1px solid var(--border); color: var(--pink); font-size: .75rem; font-weight: 600; }
+    .project-tools { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+    .project-tools-label { font-size: .88rem; font-weight: 700; color: var(--text); margin-right: 4px; }
     .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
     .project-desc { font-size: .92rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
     .project-facts { display: grid; gap: 8px; margin-bottom: 16px; }
@@ -483,7 +485,7 @@
       <div class="section-header fade-up">
         <div class="tag"><i data-lucide="folder-open" width="11" height="11"></i> Projects</div>
         <h2 class="section-title">Selected <span>Projects</span></h2>
-        <p class="section-sub">School projects with the problem, my role and what I learned. Select a card image to see screenshots.</p>
+        <p class="section-sub">School projects with what I did and the tools I used. Select a card image to see screenshots.</p>
       </div>
       <div class="projects-grid">
 
@@ -493,15 +495,9 @@
             <div class="card-slideshow" data-images='["gymhub1.png","gymhub2.png","gymhub3.png","gymhub4.png","gymhub5.png","gymhub6.png"]'><img alt="GymHub System UI screenshot" /></div>
           </button>
           <div class="project-body">
-            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Hand-drawn Design</span></div>
             <h3 class="project-title">GymHub System UI</h3>
-            <p class="project-desc">The user interface for a gym management system, drawn first and then built with HTML and CSS only. It was my first design made with HTML and CSS.</p>
-            <dl class="project-facts">
-              <div><dt>Problem: </dt><dd>a gym system needs screens that staff and members can understand without training.</dd></div>
-              <div><dt>My role: </dt><dd>part of the UI design team, drawing the layout and building the screens with HTML and CSS.</dd></div>
-              <div><dt>Result: </dt><dd>a six-screen interface: welcome, login, home, subscriptions, about us and feedback (see screenshots).</dd></div>
-              <div><dt>What I learned: </dt><dd>drawing the layout first made the coding faster and more consistent, and this was my first design built with HTML and CSS.</dd></div>
-            </dl>
+            <p class="project-desc"><strong>What I did:</strong> I was part of the UI design team for a gym management system. I drew the layout first, then built the screens (welcome, login, home, subscriptions, about us and feedback) with HTML and CSS. It was my first design made with HTML and CSS.</p>
+            <div class="project-tools"><span class="project-tools-label">Tools used:</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Hand-drawn Design</span></div>
             <div class="project-actions">
               <button class="btn btn-outline" onclick="openProject('gymhub')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
             </div>
@@ -514,15 +510,9 @@
             <div class="card-slideshow" data-images='["egg3.png","egg4.png"]'><img alt="Egg Care Game screenshot" /></div>
           </button>
           <div class="project-body">
-            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
             <h3 class="project-title">Egg Care Game</h3>
-            <p class="project-desc">A browser-based virtual pet game where you look after a digital egg by managing its hunger, warmth and happiness.</p>
-            <dl class="project-facts">
-              <div><dt>Problem: </dt><dd>practice JavaScript logic by building something interactive and fun.</dd></div>
-              <div><dt>My role: </dt><dd>sole developer: designed the screens and wrote the game logic.</dd></div>
-              <div><dt>Result: </dt><dd>a playable game where the egg's stats change as you care for it.</dd></div>
-              <div><dt>What I learned: </dt><dd>keeping track of game state and updating the screen when it changes.</dd></div>
-            </dl>
+            <p class="project-desc"><strong>What I did:</strong> I designed the screens and wrote the logic for a browser virtual pet game where you keep a digital egg alive by managing its hunger, warmth, happiness and health.</p>
+            <div class="project-tools"><span class="project-tools-label">Tools used:</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
             <div class="project-actions">
               <button class="btn btn-outline" onclick="openProject('egg')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
             </div>
@@ -535,15 +525,9 @@
             <div class="card-slideshow" data-images='["Engelyne&apos;s Salon/Landing Page.png","Engelyne&apos;s Salon/home.png","Engelyne&apos;s Salon/login.png","Engelyne&apos;s Salon/services.png","Engelyne&apos;s Salon/schedule.png","Engelyne&apos;s Salon/payment.png"]'><img alt="Engelyne's Salon screen" /></div>
           </button>
           <div class="project-body">
-            <div class="project-tags"><span class="project-tag">Figma</span><span class="project-tag">UI Design</span><span class="project-tag">Prototype</span></div>
             <h3 class="project-title">Engelyne's Salon – Figma Design</h3>
-            <p class="project-desc">A clickable booking and management prototype for a salon, designed in Figma.</p>
-            <dl class="project-facts">
-              <div><dt>Problem: </dt><dd>booking by message makes it easy to mix up services and schedules.</dd></div>
-              <div><dt>My role: </dt><dd>UI/UX designer, from screen layouts to the clickable prototype.</dd></div>
-              <div><dt>Result: </dt><dd>an 11-screen prototype covering login, services, scheduling, payment, notifications and profile.</dd></div>
-              <div><dt>What I learned: </dt><dd>designing a clear booking flow from choosing a service to paying.</dd></div>
-            </dl>
+            <p class="project-desc"><strong>What I did:</strong> I designed an 11-screen clickable booking prototype for a salon in Figma, covering login, services, scheduling, payment, notifications and profile.</p>
+            <div class="project-tools"><span class="project-tools-label">Tools used:</span><span class="project-tag">Figma</span><span class="project-tag">UI Design</span><span class="project-tag">Prototype</span></div>
             <div class="project-actions">
               <button class="btn btn-outline" onclick="openProject('salon')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
               <a class="btn btn-pink" target="_blank" rel="noopener" href="https://www.figma.com/proto/mBNdBSxbwsM2Sgml4MD0wo/Engelyne-s-Salon?node-id=335-4419&p=f&t=Obr3kFGHd9YQCE0z-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1"><i data-lucide="external-link" width="14" height="14"></i> Open prototype</a>
@@ -558,15 +542,9 @@
             <div class="card-slideshow" data-images='["Guessing_Game.webp"]'><img alt="Number Guessing Game screenshot" /></div>
           </button>
           <div class="project-body">
-            <div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
             <h3 class="project-title">Number Guessing Game</h3>
-            <p class="project-desc">A game where you guess two numbers from 0 to 5 and bet coins. I wrote it in C++ first, then rebuilt it as a playable web page.</p>
-            <dl class="project-facts">
-              <div><dt>Problem: </dt><dd>practice programming logic (functions, loops, input checking) with a small game.</dd></div>
-              <div><dt>My role: </dt><dd>sole developer: wrote the C++ console version, then designed the web version with HTML and CSS and ported the logic to JavaScript.</dd></div>
-              <div><dt>Result: </dt><dd>a working game you can play in the browser, with the same rules as the C++ version.</dd></div>
-              <div><dt>What I learned: </dt><dd>passing variables by reference in C++, validating input, and reusing the same logic in another language.</dd></div>
-            </dl>
+            <p class="project-desc"><strong>What I did:</strong> I wrote a game in C++ where you guess two numbers from 0 to 5 and bet coins, then rebuilt it as a playable web page by designing it with HTML and CSS and porting the logic to JavaScript.</p>
+            <div class="project-tools"><span class="project-tools-label">Tools used:</span><span class="project-tag">C++</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
             <div class="project-actions">
               <a class="btn btn-pink" href="https://nicoleraz.github.io/Game/"><i data-lucide="play" width="14" height="14"></i> Play web version</a>
               <button class="btn btn-outline" onclick="openProject('numgame')"><i data-lucide="images" width="14" height="14"></i> View screenshots</button>
