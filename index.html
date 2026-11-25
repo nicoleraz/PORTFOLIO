@@ -126,6 +126,8 @@
     .social-btn:hover { background: var(--pink-glow); color: var(--pink); border-color: var(--pink); }
     .hero-visual { flex-shrink: 0; }
     .avatar-ring { width: 250px; height: 250px; border-radius: 50%; border: 3px solid var(--pink); overflow: hidden; box-shadow: 0 0 0 8px rgba(244,114,182,.1), 0 0 0 16px rgba(244,114,182,.05), 0 24px 60px rgba(0,0,0,.35); }
+    .avatar-ring { animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
     .avatar-ring img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 
     /* SECTIONS */
@@ -237,6 +239,7 @@
       html { scroll-behavior: auto; }
       .fade-up { opacity: 1; transform: none; transition: none; }
       .project-thumb img { transition: none; }
+      .avatar-ring { animation: none; }
     }
 
     @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
