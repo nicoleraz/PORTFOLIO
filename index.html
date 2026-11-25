@@ -179,15 +179,13 @@
     .chip { padding: 6px 14px; border-radius: 99px; background: var(--pink-glow); border: 1px solid var(--border); color: var(--text); font-size: .88rem; font-weight: 500; }
 
     /* CERTIFICATIONS */
-    .cert-list { max-width: 860px; margin: 0 auto; border-top: 1px solid var(--border); }
-    .cert-item { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); }
-    .cert-date, .cert-row dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .74rem; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); }
-    .cert-date { padding-top: 10px; }
-    .cert-title { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 600; line-height: 1.25; color: var(--text); }
-    .cert-type { font-size: .95rem; color: var(--text-muted); margin: 8px 0 20px; }
-    .cert-rows { border-top: 1px solid var(--border); }
-    .cert-row { display: grid; grid-template-columns: 1fr 1.5fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
-    .cert-row dd { font-size: .95rem; color: var(--text); }
+    .cert-grid { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .cert-badge { width: 52px; height: 52px; border-radius: 12px; background: var(--pink-glow); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .cert-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .cert-issuer { font-size: .88rem; color: var(--pink); font-weight: 600; margin-bottom: 4px; }
+    .cert-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+    .cert-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 
     /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -254,9 +252,7 @@
       .about-grid, .projects-grid, .detail-grid, .exp-grid { grid-template-columns: 1fr; }
       .projects-grid .project-card:last-child:nth-child(odd) { max-width: none; }
       .contact-card { padding: 26px 18px; }
-      .cert-item { grid-template-columns: 1fr; gap: 8px; padding: 26px 0; }
-      .cert-date { padding-top: 0; }
-      .cert-row { grid-template-columns: 1fr; gap: 4px; }
+      .cert-card { flex-direction: column; }
     }
     @media (max-width: 480px) {
       .section { padding: 60px 0; }
@@ -471,21 +467,25 @@
         <div class="tag"><i data-lucide="award" width="11" height="11"></i> Certifications</div>
         <h2 class="section-title">My <span>Certifications</span></h2>
       </div>
-      <div class="cert-list">
-        <article class="cert-item fade-up">
-          <!-- To show a date like "MAY 28, 2026", replace NC II below with the date -->
-          <div class="cert-date">NC II</div>
+      <div class="cert-grid">
+        <div class="cert-card fade-up">
+          <div class="cert-badge" aria-hidden="true">🏅</div>
           <div>
-            <h3 class="cert-title">Computer Systems Servicing NC II</h3>
-            <p class="cert-type">National Certificate II</p>
-            <dl class="cert-rows">
-              <div class="cert-row"><dt>Issuing organization</dt><dd>TESDA – Technical Education and Skills Development Authority</dd></div>
-              <div class="cert-row"><dt>Covers</dt><dd>Installation, configuration and maintenance of computer systems and networks</dd></div>
-              <!-- To add the training center, copy this line:
-              <div class="cert-row"><dt>Training institution</dt><dd>YOUR TRAINING CENTER</dd></div> -->
-            </dl>
+            <div class="cert-title">KALAHI-CIDSS KKB: Cash-for-Work Program for College Graduates and Students</div>
+            <div class="cert-issuer">DSWD &nbsp;·&nbsp; City College of Calamba (CCC)</div>
+            <div class="cert-desc">Certificate of completion</div>
+            <div class="cert-meta"><span class="project-tag">September 14, 2025</span></div>
           </div>
-        </article>
+        </div>
+        <div class="cert-card fade-up">
+          <div class="cert-badge" aria-hidden="true">🏅</div>
+          <div>
+            <div class="cert-title">Computer Systems Servicing NC II</div>
+            <div class="cert-issuer">TESDA – Technical Education and Skills Development Authority</div>
+            <div class="cert-desc">National Certificate II covering installation, configuration and maintenance of computer systems and networks. Training institution: International Electronics and Technical Institute (Calamba).</div>
+            <div class="cert-meta"><span class="project-tag">May 28, 2026</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
