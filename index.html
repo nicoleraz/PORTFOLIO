@@ -23,6 +23,8 @@
       --text:       #f1f0f8;
       --text-muted: #a9a7b5;
       --radius:     16px;
+      --error:      #fca5a5;
+      color-scheme: dark;
     }
     [data-theme="light"] {
       --pink-glow:  rgba(219,39,119,0.10);
@@ -35,6 +37,8 @@
       --text:       #1a1a2e;
       --text-muted: #5f5f73;
       --pink:       #be185d;
+      --error:      #b91c1c;
+      color-scheme: light;
     }
     [data-theme="light"] .hero-orb.orb1 { background: rgba(219,39,119,.10); }
     [data-theme="light"] .hero-orb.orb2 { background: rgba(244,114,182,.07); }
@@ -215,8 +219,8 @@
     .project-actions .btn { padding: 10px 16px; font-size: .88rem; }
 
     /* CONTACT */
-    .contact-wrap { max-width: 580px; margin: 0 auto; }
-    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 38px 32px; }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; align-items: start; }
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; min-width: 0; }
     .contact-card p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
     .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
     .contact-link { display: flex; align-items: center; gap: 14px; padding: 14px 16px; min-height: 56px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; transition: border-color .2s, background .2s; }
@@ -224,6 +228,28 @@
     .c-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--pink-glow); display: flex; align-items: center; justify-content: center; color: var(--pink); flex-shrink: 0; }
     .c-label { font-size: .75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
     .c-value { font-size: .95rem; color: var(--text); font-weight: 500; margin-top: 1px; word-break: break-all; }
+
+    /* CONTACT FORM */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; min-width: 0; }
+    .field label { font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .8px; font-weight: 600; }
+    .field input, .field textarea {
+      width: 100%; min-height: 48px; background: var(--surface2); color: var(--text);
+      border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px;
+      font-family: inherit; font-size: 1rem; transition: border-color .2s, box-shadow .2s;
+    }
+    .field textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--text-muted); opacity: .75; }
+    .field input:hover, .field textarea:hover { border-color: var(--pink); }
+    .field input:focus, .field textarea:focus { outline: 2px solid transparent; border-color: var(--pink); box-shadow: 0 0 0 4px var(--pink-glow); }
+    .field input:user-invalid, .field textarea:user-invalid { border-color: var(--error); }
+    .hp-field { position: absolute; left: -9999px; }
+    .send-btn { width: 100%; justify-content: center; margin-top: 4px; }
+    .send-btn:disabled { opacity: .6; cursor: wait; transform: none; }
+    .form-status { font-size: .88rem; margin-top: 12px; text-align: center; color: var(--text); }
+    .form-status:empty { margin: 0; }
+    .form-status.error { color: var(--error); }
+    .form-status a { text-decoration: underline; }
 
     footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: .85rem; color: var(--text-muted); }
     footer span { color: var(--pink); }
@@ -245,7 +271,10 @@
       .avatar-ring { animation: none; }
     }
 
-    @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+    }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -258,6 +287,7 @@
       .about-grid, .projects-grid, .detail-grid, .exp-grid { grid-template-columns: 1fr; }
       .projects-grid .project-card:last-child:nth-child(odd) { max-width: none; }
       .contact-card { padding: 26px 18px; }
+      .form-row { grid-template-columns: 1fr; }
       .cert-card { flex-direction: column; }
     }
     @media (max-width: 480px) {
@@ -599,7 +629,7 @@
       <div class="section-header fade-up">
         <div class="tag"><i data-lucide="send" width="11" height="11"></i> Contact</div>
         <h2 class="section-title">Get in <span>Touch</span></h2>
-        <p class="section-sub">Open to internships and collaboration. Email is the fastest way to reach me.</p>
+        <p class="section-sub">Open to internships and collaboration. Send me a message and I'll reply by email.</p>
       </div>
       <div class="contact-wrap">
         <div class="contact-card fade-up">
@@ -617,6 +647,37 @@
               <div><div class="c-label">Facebook</div><div class="c-value">Nicole Raz</div></div>
             </a>
           </div>
+        </div>
+        <div class="contact-card fade-up">
+          <form id="contact-form" action="https://formsubmit.co/nicoleraz2806@gmail.com" method="POST">
+            <div class="form-row">
+              <div class="field">
+                <label for="first-name">First name</label>
+                <input type="text" id="first-name" name="First name" placeholder="e.g. Juan" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="last-name">Last name</label>
+                <input type="text" id="last-name" name="Last name" placeholder="e.g. Dela Cruz" autocomplete="family-name" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="Subject" placeholder="What would you like to discuss?" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell me about your internship or project..." required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New message from your portfolio" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button type="submit" class="btn btn-pink send-btn"><i data-lucide="send" width="15" height="15"></i> Send message</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -768,6 +829,37 @@
       if (e.key === 'Escape')     closeProject();
       if (e.key === 'ArrowLeft')  changeSlide(-1);
       if (e.key === 'ArrowRight') changeSlide(1);
+    });
+
+    // Contact form (sent to email through FormSubmit)
+    const contactForm = document.getElementById('contact-form');
+    const formStatus  = document.getElementById('form-status');
+    contactForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const button = contactForm.querySelector('.send-btn');
+      const data = Object.fromEntries(new FormData(contactForm));
+      if (data._honey) return; // filled only by spam bots
+      data._subject = 'Portfolio: ' + data.Subject;
+
+      button.disabled = true;
+      formStatus.className = 'form-status';
+      formStatus.textContent = 'Sending...';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/nicoleraz2806@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (!res.ok || String(result.success) !== 'true') throw new Error(result.message);
+        contactForm.reset();
+        formStatus.textContent = 'Thank you! Your message has been sent.';
+      } catch (err) {
+        formStatus.className = 'form-status error';
+        formStatus.innerHTML = 'Your message was not sent. Please try again or email <a href="mailto:nicoleraz2806@gmail.com">nicoleraz2806@gmail.com</a>.';
+      } finally {
+        button.disabled = false;
+      }
     });
 
     // Active nav link on scroll
